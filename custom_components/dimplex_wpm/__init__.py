@@ -17,6 +17,7 @@ from .const import (
     CONF_SCAN_INTERVAL,
     CONF_TIMEOUT,
     CONF_UNIT_ID,
+    DEFAULT_ENABLE_WRITE,
     DEFAULT_SCAN_INTERVAL,
     DEFAULT_TIMEOUT,
     DEFAULT_UNIT_ID,
@@ -52,6 +53,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         client,
         scan_interval=scan_interval,
         register_strategy=register_strategy,
+        host=host,
+        port=port,
+        unit_id=unit_id,
     )
 
     await coordinator.async_config_entry_first_refresh()
@@ -59,8 +63,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     hass.data[DOMAIN][entry.entry_id] = {
         "coordinator": coordinator,
         "client": client,
+        "host": host,
+        "port": port,
+        "unit_id": unit_id,
         CONF_ENABLE_WRITE_ENTITIES: entry.options.get(
-            CONF_ENABLE_WRITE_ENTITIES, True
+            CONF_ENABLE_WRITE_ENTITIES, DEFAULT_ENABLE_WRITE
         ),
         CONF_ENABLE_EMS: entry.options.get(CONF_ENABLE_EMS, False),
         CONF_ENABLE_BMS_TEMP: entry.options.get(CONF_ENABLE_BMS_TEMP, False),

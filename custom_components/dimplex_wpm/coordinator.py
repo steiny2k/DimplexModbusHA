@@ -9,6 +9,7 @@ from typing import Any
 
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+from homeassistant.util import dt as dt_util
 
 from .const import (
     DEFAULT_SCAN_INTERVAL,
@@ -57,6 +58,9 @@ class DimplexDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         *,
         scan_interval: int = DEFAULT_SCAN_INTERVAL,
         register_strategy: str = "holding",
+        host: str | None = None,
+        port: int | None = None,
+        unit_id: int | None = None,
     ) -> None:
         super().__init__(
             hass,
@@ -66,13 +70,22 @@ class DimplexDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
         )
         self._client = client
         self._register_strategy = register_strategy
+        self._connection_info = {
+            "host": host,
+            "port": port,
+            "unit_id": unit_id,
+            "register_strategy": register_strategy,
+        }
+        self._consecutive_failures = 0
 
     async def _async_update_data(self) -> dict[str, Any]:
         """Fetch data from Modbus and return structured payload."""
         try:
             raw = await self._read_registers()
         except Exception as err:
+            self._consecutive_failures += 1
             raise UpdateFailed(f"Error communicating with Modbus device: {err}") from err
+        self._consecutive_failures = 0
 
         derived: dict[str, Any] = {}
         if REG_OUTDOOR_TEMPERATURE in raw:
@@ -106,7 +119,14 @@ class DimplexDataUpdateCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             derived["fault_text"] = _map_code(raw[REG_FAULT_CODE], FAULT_MAP)
             derived["fault_active"] = raw[REG_FAULT_CODE] != 0
 
-        return {"raw": raw, "derived": derived}
+        meta = {
+            "last_update": dt_util.utcnow().isoformat(),
+            "update_success": True,
+            "consecutive_failures": self._consecutive_failures,
+            **self._connection_info,
+        }
+
+        return {"raw": raw, "derived": derived, "meta": meta}
 
     async def _read_registers(self) -> dict[int, int]:
         """Read registers according to configured strategy."""

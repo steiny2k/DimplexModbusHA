@@ -1,6 +1,6 @@
 # Dimplex WPM – Home Assistant Modbus TCP integration
 
-Custom HACS integration for connecting Dimplex WPM / NWPM heat pump controllers over Modbus TCP. The integration batches Modbus reads through a dedicated async pymodbus client, exposes sensors and binary sensors via a `DataUpdateCoordinator`, and allows writing SG Ready mode as a select entity.
+Custom HACS integration for connecting Dimplex WPM / NWPM heat pump controllers over Modbus TCP. The integration batches Modbus reads through a dedicated async pymodbus client, exposes sensors and binary sensors via a `DataUpdateCoordinator`, builds a device tree (Controller → HC1 → DHW → Smart Grid), and allows writing SG Ready mode as a select entity.
 
 ## Features (v0.1.0)
 
@@ -8,13 +8,15 @@ Custom HACS integration for connecting Dimplex WPM / NWPM heat pump controllers 
 - Periodic batch polling of key registers (temperatures, status/lock/fault codes, SG Ready).
 - Human-friendly text sensors for status, lock, fault, and SG Ready.
 - Diagnostic binary sensors for `fault_active` and `lock_active`.
-- SG Ready mode writable as a select (`Hardware`, `Yellow`, `Green`, `Red`, `Deep Green`).
+- Controller info diagnostic sensor with host/port/unit, last update, and capabilities.
+- SG Ready mode writable as a select (`Hardware`, `Yellow`, `Green`, `Red`, `Deep Green`) gated by the Options Flow (disabled by default).
 - Optional toggles for write entities and future EMS/BMS features.
 
 ### Entities
 
 | Type | Entity | Register | Notes |
 | --- | --- | --- | --- |
+| sensor | controller_info | — | Attributes: host/port/unit_id, last_update, failure counter, capabilities |
 | sensor | outdoor_temperature | 1 (int16, 0.1°C) | Temperature °C |
 | sensor | return_temperature | 2 (int16, 0.1°C) | Temperature °C |
 | sensor | return_setpoint_temperature | 53 (int16, 0.1°C) | Temperature °C |
@@ -24,7 +26,7 @@ Custom HACS integration for connecting Dimplex WPM / NWPM heat pump controllers 
 | sensor | lock_code / lock | 104 | Diagnostic + mapped text |
 | sensor | fault_code / fault | 105 | Diagnostic + mapped text |
 | sensor | sensor_error_code / sensor_error | 106 | Diagnostic + mapped text |
-| sensor | sg_ready_state | 5167 | Diagnostic text |
+| sensor | sg_ready_code / sg_ready_state | 5167 | Diagnostic code + text |
 | binary_sensor | fault_active | derived | `True` when fault code ≠ 0 |
 | binary_sensor | lock_active | derived | `True` when lock code ≠ 0 |
 | select | sg_ready_mode | 5167 | Writable: Hardware / Yellow / Green / Red / Deep Green |
@@ -50,7 +52,7 @@ Config Flow fields:
 Options Flow:
 
 - **Scan interval** override.
-- **Enable write entities** (gate for SG Ready select).
+- **Enable write entities** (gate for SG Ready select, default **off**).
 - **Enable EMS entities**, **BMS outdoor temp**, **external lock** (placeholders for upcoming releases).
 
 ## How it works

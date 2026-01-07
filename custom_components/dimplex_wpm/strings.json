@@ -37,6 +37,9 @@
   },
   "entity": {
     "sensor": {
+      "controller_info": {
+        "name": "Controller info"
+      },
       "outdoor_temperature": {
         "name": "Outdoor temperature"
       },
@@ -75,6 +78,9 @@
       },
       "sensor_error_text": {
         "name": "Sensor error"
+      },
+      "sg_ready_code": {
+        "name": "SG Ready code"
       },
       "sg_ready_text": {
         "name": "SG Ready state"

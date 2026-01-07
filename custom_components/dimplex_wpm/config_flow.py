@@ -17,6 +17,7 @@ from .const import (
     CONF_SCAN_INTERVAL,
     CONF_TIMEOUT,
     CONF_UNIT_ID,
+    DEFAULT_ENABLE_WRITE,
     DEFAULT_PORT,
     DEFAULT_SCAN_INTERVAL,
     DEFAULT_TIMEOUT,
@@ -86,7 +87,9 @@ class DimplexOptionsFlow(config_entries.OptionsFlow):
                 ): vol.All(int, vol.Range(min=5, max=300)),
                 vol.Optional(
                     CONF_ENABLE_WRITE_ENTITIES,
-                    default=self.config_entry.options.get(CONF_ENABLE_WRITE_ENTITIES, True),
+                    default=self.config_entry.options.get(
+                        CONF_ENABLE_WRITE_ENTITIES, DEFAULT_ENABLE_WRITE
+                    ),
                 ): bool,
                 vol.Optional(
                     CONF_ENABLE_EMS,

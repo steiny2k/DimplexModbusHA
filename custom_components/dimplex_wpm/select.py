@@ -13,13 +13,14 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import (
     CONF_ENABLE_WRITE_ENTITIES,
-    DEVICE_MANUFACTURER,
-    DEVICE_NAME,
+    DEFAULT_ENABLE_WRITE,
     DOMAIN,
+    MODULE_SG,
     REG_SG_READY_MODE,
     SG_READY_MAP,
     SG_READY_REVERSE,
 )
+from .device import build_device_info
 
 
 async def async_setup_entry(
@@ -30,7 +31,7 @@ async def async_setup_entry(
     """Set up select entity."""
     data = hass.data[DOMAIN][entry.entry_id]
     coordinator = data["coordinator"]
-    allow_write = data.get(CONF_ENABLE_WRITE_ENTITIES, True)
+    allow_write = data.get(CONF_ENABLE_WRITE_ENTITIES, DEFAULT_ENABLE_WRITE)
 
     async_add_entities(
         [DimplexSGReadySelect(coordinator, entry, allow_write)],
@@ -47,12 +48,8 @@ class DimplexSGReadySelect(CoordinatorEntity, SelectEntity):
         super().__init__(coordinator)
         self._entry = entry
         self._allow_write = allow_write
-        self._attr_unique_id = f"{entry.entry_id}_sg_ready_mode"
-        self._attr_device_info = {
-            "identifiers": {(DOMAIN, entry.entry_id)},
-            "manufacturer": DEVICE_MANUFACTURER,
-            "name": DEVICE_NAME,
-        }
+        self._attr_unique_id = f"{entry.entry_id}_{MODULE_SG}_sg_ready_mode"
+        self._attr_device_info = build_device_info(entry, MODULE_SG)
 
     @property
     def current_option(self) -> str | None:

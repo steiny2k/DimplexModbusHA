@@ -12,7 +12,8 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import DEVICE_MANUFACTURER, DEVICE_NAME, DOMAIN
+from .const import DOMAIN, MODULE_ROOT
+from .device import build_device_info
 
 FAULT_DESCRIPTION = BinarySensorEntityDescription(
     key="fault_active",
@@ -53,12 +54,8 @@ class DimplexBinarySensor(CoordinatorEntity, BinarySensorEntity):
         self.entity_description = description
         self._attr_has_entity_name = True
         self._attr_translation_key = description.translation_key
-        self._attr_unique_id = f"{entry.entry_id}_{description.key}"
-        self._attr_device_info = {
-            "identifiers": {(DOMAIN, entry.entry_id)},
-            "manufacturer": DEVICE_MANUFACTURER,
-            "name": DEVICE_NAME,
-        }
+        self._attr_unique_id = f"{entry.entry_id}_{MODULE_ROOT}_{description.key}"
+        self._attr_device_info = build_device_info(entry, MODULE_ROOT)
 
     @property
     def is_on(self) -> bool | None:
