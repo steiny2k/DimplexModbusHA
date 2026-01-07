@@ -1137,14 +1137,13 @@ datapoints:
     module: energy
     platform: sensor
     modbus: input
-    address: null
+    address: 114
     data_type: uint16
     scale: 0.1
     unit: "Hz"
     rw: read
-    enabled_by_default: false
-    notes: "TODO: confirm Modbus register address for inverter frequency; create entity only after verification."
-```
+    enabled_by_default: true
+
 
 ---
 
