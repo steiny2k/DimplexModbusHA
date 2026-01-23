@@ -704,6 +704,90 @@ modbus:
         precision: 2
         scan_interval: 30
 
+      - name: "Dimplex Humidity Indoor"
+        unique_id: dimplex_humidity_indoor
+        address: 107
+        input_type: holding
+        scan_interval: 360
+        data_type: int16
+        unit_of_measurement: "%"
+        scale: 0.1
+        precision: 1
+        device_class: humidity
+        state_class: measurement
+
+      - name: "Dimplex Temperature Hot Gas"
+        unique_id: dimplex_temp_hot_gas
+        address: 8
+        input_type: holding
+        scan_interval: 10
+        data_type: int16
+        unit_of_measurement: "°C"
+        scale: 0.1
+        precision: 1
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Dimplex Temperature Suction Gas"
+        unique_id: dimplex_temp_suction_gas
+        address: 108
+        input_type: holding
+        scan_interval: 10
+        data_type: int16
+        unit_of_measurement: "°C"
+        scale: 0.1
+        precision: 1
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Dimplex Temperature Evaporator Out"
+        unique_id: dimplex_temp_evaporator_out
+        address: 98
+        input_type: holding
+        scan_interval: 10
+        data_type: int16
+        unit_of_measurement: "°C"
+        scale: 0.1
+        precision: 1
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Dimplex Temperature Evaporator Mid"
+        unique_id: dimplex_temp_evaporator_mid
+        address: 109
+        input_type: holding
+        scan_interval: 10
+        data_type: int16
+        unit_of_measurement: "°C"
+        scale: 0.1
+        precision: 1
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Dimplex Temperature Condenser In"
+        unique_id: dimplex_temp_condenser_in
+        address: 9
+        input_type: holding
+        scan_interval: 10
+        data_type: int16
+        unit_of_measurement: "°C"
+        scale: 0.1
+        precision: 1
+        device_class: temperature
+        state_class: measurement
+
+      - name: "Dimplex Temperature Condenser Out"
+        unique_id: dimplex_temp_condenser_out
+        address: 10
+        input_type: holding
+        scan_interval: 10
+        data_type: int16
+        unit_of_measurement: "°C"
+        scale: 0.1
+        precision: 1
+        device_class: temperature
+        state_class: measurement      
+
     binary_sensors:
 
       # ===== Digital inputs =====
