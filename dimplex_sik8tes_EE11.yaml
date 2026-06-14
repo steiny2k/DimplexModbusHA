@@ -1,0 +1,1260 @@
+dimplex_sik8tes_ee11:
+  modbus:
+    - name: dimplex_sik8tes
+      type: tcp
+      host: 10.0.1.14
+      port: 8899
+      delay: 2
+      timeout: 3
+  
+      sensors:
+        # ===== Systemstatus =====
+        - name: "Dimplex Statusmeldungen"
+          unique_id: "dimplex_statusmeldungen"
+          address: 103
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: ""
+          slave: 1
+          scan_interval: 10
+        - name: "Dimplex Sperrmeldungen"
+          unique_id: "dimplex_sperrmeldungen"
+          address: 104
+          input_type: input
+          data_type: uint16
+          slave: 1
+          scan_interval: 10
+        - name: "Dimplex Störmeldungen"
+          unique_id: "dimplex_stoermeldungen"
+          address: 105
+          input_type: input
+          data_type: uint16
+          slave: 1
+          scan_interval: 10
+        - name: "Dimplex Sensorfehler"
+          unique_id: "dimplex_sensorfehler"
+          address: 106
+          input_type: input
+          data_type: uint16
+          slave: 1
+          scan_interval: 10
+        # ===== Betriebsmodus =====
+        - name: "Dimplex Betriebsmodus"
+          unique_id: "dimplex_betriebsmodus"
+          address: 222
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: ""
+          slave: 1
+          scan_interval: 60
+        - name: "Dimplex Partystunden"
+          unique_id: "dimplex_partystunden"
+          address: 223
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "h"
+          slave: 1
+          scan_interval: 60
+        - name: "Dimplex Urlaubstage"
+          unique_id: "dimplex_urlaubstage"
+          address: 224
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "d"
+          slave: 1
+          scan_interval: 30
+        # - name: "Dimplex Lüftungsstufen"
+        #   unique_id: "dimplex_lueftungsstufen"
+        #   address: 241
+        #   input_type: input
+        #   data_type: uint16
+        #   slave: 1
+        #   scan_interval: 30
+        # - name: "Dimplex Stoßlüften Zeitwert"
+        #   unique_id: "dimplex_stosslueften"
+        #   address: 127
+        #   input_type: input
+        #   data_type: uint16
+        #   unit_of_measurement: "min"
+        #   slave: 1
+        #   scan_interval: 60
+        # ===== Betriebsdaten =====
+        - name: "Dimplex Außentemperatur (R1)"
+          unique_id: "dimplex_aussentemperatur"
+          address: 1
+          input_type: input
+          data_type: int16
+          unit_of_measurement: "°C"
+          scale: 0.1
+          precision: 1
+          device_class: temperature
+          state_class: measurement
+          slave: 1
+          scan_interval: 30
+        - name: "Dimplex Rücklauftemperatur (R2)"
+          unique_id: "dimplex_ruecklauftemperatur"
+          address: 2
+          input_type: input
+          data_type: int16
+          unit_of_measurement: "°C"
+          scale: 0.1
+          precision: 1
+          device_class: temperature
+          state_class: measurement
+          slave: 1
+          scan_interval: 30
+        - name: "Dimplex Rücklaufsolltemperatur"
+          unique_id: "dimplex_ruecklaufsoll"
+          address: 53
+          input_type: input
+          data_type: int16
+          unit_of_measurement: "°C"
+          scale: 0.1
+          precision: 1
+          device_class: temperature
+          state_class: measurement
+          slave: 1
+          scan_interval: 30
+        - name: "Dimplex Warmwassertemperatur (R3)"
+          unique_id: "dimplex_warmwassertemperatur"
+          address: 3
+          input_type: input
+          data_type: int16
+          unit_of_measurement: "°C"
+          scale: 0.1
+          precision: 1
+          device_class: temperature
+          state_class: measurement
+          slave: 1
+          scan_interval: 30
+        - name: "Dimplex Warmwassersolltemperatur"
+          unique_id: "dimplex_warmwassersoll"
+          address: 58
+          input_type: input
+          data_type: int16
+          unit_of_measurement: "°C"
+          scale: 0.1
+          precision: 1
+          device_class: temperature
+          state_class: measurement
+          slave: 1
+          scan_interval: 30
+        - name: "Dimplex Vorlauftemperatur (R9)"
+          unique_id: "dimplex_vorlauftemperatur"
+          address: 5
+          input_type: input
+          data_type: int16
+          unit_of_measurement: "°C"
+          scale: 0.1
+          precision: 1
+          device_class: temperature
+          state_class: measurement
+          slave: 1
+          scan_interval: 30
+        - name: "Dimplex Wärmequelleneintritt (R24)"
+          unique_id: "dimplex_waermequelleneintritt"
+          address: 6
+          input_type: input
+          data_type: int16
+          unit_of_measurement: "°C"
+          scale: 0.1
+          precision: 1
+          device_class: temperature
+          state_class: measurement
+          slave: 1
+          scan_interval: 60
+        - name: "Dimplex Wärmequellenaustritt (R6)"
+          unique_id: "dimplex_waermequellenaustritt"
+          address: 7
+          input_type: input
+          data_type: int16
+          unit_of_measurement: "°C"
+          scale: 0.1
+          precision: 1
+          device_class: temperature
+          state_class: measurement
+          slave: 1
+          scan_interval: 60
+        # # ===== Heizkreise Ist/Soll =====
+        # - name: "Dimplex Solltemperatur 2. Heizkreis"
+        #   unique_id: "dimplex_hc2_soll"
+        #   address: 54
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 30
+        # - name: "Dimplex Temperatur 2. Heizkreis (R5)"
+        #   unique_id: "dimplex_hc2_ruecklauf"
+        #   address: 9
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 30
+        # - name: "Dimplex Solltemperatur 3. Heizkreis"
+        #   unique_id: "dimplex_hc3_soll"
+        #   address: 55
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 30
+        # - name: "Dimplex Temperatur 3. Heizkreis (R13)"
+        #   unique_id: "dimplex_hc3_ruecklauf"
+        #   address: 10
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 30
+        # - name: "Dimplex Raumtemperatur 1"
+        #   unique_id: "dimplex_raumtemperatur1"
+        #   address: 11
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 30
+        # - name: "Dimplex Raumtemperatur 2"
+        #   unique_id: "dimplex_raumtemperatur2"
+        #   address: 12
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 30
+        # - name: "Dimplex Raumfeuchte 1"
+        #   unique_id: "dimplex_raumfeuchte1"
+        #   address: 13
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "%"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: humidity
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 60
+        # - name: "Dimplex Raumfeuchte 2"
+        #   unique_id: "dimplex_raumfeuchte2"
+        #   address: 14
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "%"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: humidity
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 60
+        # # ===== Kühlen =====
+        # - name: "Dimplex Vorlauftemperatur passiv Kühlen (R11)"
+        #   unique_id: "dimplex_passiv_vorlauf"
+        #   address: 19
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 60
+        # - name: "Dimplex Rücklauftemperatur passiv Kühlen (R4)"
+        #   unique_id: "dimplex_passiv_ruecklauf"
+        #   address: 20
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 60
+        # - name: "Dimplex Rücklauftemp. gem. Primärkreis (R24)"
+        #   unique_id: "dimplex_primaerkreis_ruecklauf"
+        #   address: 21
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 60
+        # # ===== Solar =====
+        # - name: "Dimplex Kollektorfühler (R23)"
+        #   unique_id: "dimplex_kollektor"
+        #   address: 10
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 60
+        # - name: "Dimplex Solarspeicher (R22)"
+        #   unique_id: "dimplex_solarspeicher"
+        #   address: 23
+        #   input_type: input
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 60
+        # ===== Laufzeiten =====
+        - name: "Dimplex Verdichter 1"
+          unique_id: "dimplex_verdichter1"
+          address: 72
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "h"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 300
+        # - name: "Dimplex Verdichter 2"
+          # unique_id: "dimplex_verdichter2"
+          # address: 73
+          # input_type: input
+          # data_type: uint16
+          # unit_of_measurement: "h"
+          # state_class: total_increasing
+          # slave: 1
+          # scan_interval: 300
+        - name: "Dimplex Primärpumpe / Ventilator (M11)"
+          unique_id: "dimplex_primaerpumpe"
+          address: 74
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "h"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 300
+        - name: "Dimplex 2. Wärmeerzeuger (E10)"
+          unique_id: "dimplex_waermeerzeuger2"
+          address: 75
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "h"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 300
+        - name: "Dimplex Heizungspumpe (M13)"
+          unique_id: "dimplex_heizungspumpe_m13"
+          address: 76
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "h"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 300
+        - name: "Dimplex Warmwasserladepumpe (M18)"
+          unique_id: "dimplex_ww_pumpe"
+          address: 77
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "h"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 300
+        - name: "Dimplex Flanschheizung (E9)"
+          unique_id: "dimplex_flanschheizung"
+          address: 78
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "h"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 300
+        # - name: "Dimplex Schwimmbadpumpe (M19)"
+        #   unique_id: "dimplex_pool_pumpe"
+        #   address: 79
+        #   input_type: input
+        #   data_type: uint16
+        #   unit_of_measurement: "h"
+        #   state_class: total_increasing
+        #   slave: 1
+        #   scan_interval: 300
+        - name: "Dimplex Zusatzumwälzpumpe (M16)"
+          unique_id: "dimplex_zusatzumwaelzpumpe"
+          address: 71
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "h"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 300
+        # ===== Wärme- und Energiemengen =====
+        - name: "Dimplex Wärmemenge Heizen 1-4"
+          unique_id: "dimplex_heizen_1"
+          address: 303
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "kWh"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 600
+        - name: "Dimplex Wärmemenge Heizen 5-8"
+          unique_id: "dimplex_heizen_2"
+          address: 304
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "kWh"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 600
+        - name: "Dimplex Wärmemenge Heizen 9-12"
+          unique_id: "dimplex_heizen_3"
+          address: 305
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "kWh"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 600
+        - name: "Dimplex Wärmemenge Warmwasser 1-4"
+          unique_id: "dimplex_ww_1"
+          address: 306
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "kWh"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 600
+        - name: "Dimplex Wärmemenge Warmwasser 5-8"
+          unique_id: "dimplex_ww_2"
+          address: 307
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "kWh"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 600
+        - name: "Dimplex Wärmemenge Warmwasser 9-12"
+          unique_id: "dimplex_ww_3"
+          address: 308
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "kWh"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 600
+        # - name: "Dimplex Wärmemenge Schwimmbad 1-4"
+        #   unique_id: "dimplex_pool_1"
+        #   address: 309
+        #   input_type: input
+        #   data_type: uint16
+        #   unit_of_measurement: "kWh"
+        #   state_class: total_increasing
+        #   slave: 1
+        #   scan_interval: 600
+        # - name: "Dimplex Wärmemenge Schwimmbad 5-8"
+        #   unique_id: "dimplex_pool_2"
+        #   address: 310
+        #   input_type: input
+        #   data_type: uint16
+        #   unit_of_measurement: "kWh"
+        #   state_class: total_increasing
+        #   slave: 1
+        #   scan_interval: 600
+        # - name: "Dimplex Wärmemenge Schwimmbad 9-12"
+        #   unique_id: "dimplex_pool_3"
+        #   address: 311
+        #   input_type: input
+        #   data_type: uint16
+        #   unit_of_measurement: "kWh"
+        #   state_class: total_increasing
+        #   slave: 1
+        #   scan_interval: 600
+        - name: "Dimplex Umweltenergie 1-4"
+          unique_id: "dimplex_umwelt_1"
+          address: 334
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "kWh"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 600
+        - name: "Dimplex Umweltenergie 5-8"
+          unique_id: "dimplex_umwelt_2"
+          address: 335
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "kWh"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 600
+        - name: "Dimplex Umweltenergie 9-12"
+          unique_id: "dimplex_umwelt_3"
+          address: 336
+          input_type: input
+          data_type: uint16
+          unit_of_measurement: "kWh"
+          state_class: total_increasing
+          slave: 1
+          scan_interval: 600
+        # ===== 1. Heiz-/Kühlkreis Einstellungen =====
+        - name: "Dimplex HK1 Parallelverschiebung"
+          unique_id: "dimplex_hk1_parallel"
+          address: 243
+          input_type: holding
+          data_type: uint16
+          unit_of_measurement: ""
+          slave: 1
+          scan_interval: 120
+        - name: "Dimplex HK1 Raumsolltemperatur"
+          unique_id: "dimplex_hk1_raumsoll"
+          address: 46
+          data_type: uint16
+          unit_of_measurement: "°C"
+          input_type: holding
+          slave: 1
+          scan_interval: 120
+        - name: "Dimplex HK1 Festwertsolltemperatur"
+          unique_id: "dimplex_hk1_festwert"
+          address: 244
+          data_type: uint16
+          unit_of_measurement: "°C"
+          input_type: holding
+          slave: 1
+          scan_interval: 120
+        - name: "Dimplex HK1 Heizkurvenendpunkt"
+          unique_id: "dimplex_hk1_kurvenende"
+          address: 245
+          data_type: uint16
+          unit_of_measurement: "°C"
+          input_type: holding
+          slave: 1
+          scan_interval: 120
+        - name: "Dimplex HK1 Hysterese"
+          unique_id: "dimplex_hk1_hysterese"
+          address: 47
+          data_type: uint16
+          unit_of_measurement: "K"
+          input_type: holding
+          scale: 0.1
+          precision: 1
+        # - name: "Dimplex HK1 Solltemp. dyn. Kühlung (15°C AT)"
+        #   unique_id: "dimplex_hk1_kuehl_15"
+        #   address: 250
+        #   data_type: uint16
+        #   unit_of_measurement: "°C"
+        #   input_type: holding
+        #   slave: 1
+        #   scan_interval: 120
+        # - name: "Dimplex HK1 Solltemp. dyn. Kühlung (35°C AT)"
+        #   unique_id: "dimplex_hk1_kuehl_35"
+        #   address: 341
+        #   data_type: uint16
+        #   unit_of_measurement: "°C"
+        #   input_type: holding
+        #   slave: 1
+        #   scan_interval: 120
+        # # ===== 2./3. Heiz-/Kühlkreis Einstellungen =====
+        # - name: "Dimplex HK2/3 Auswahl Heizkreis"
+        #   unique_id: "dimplex_hk23_auswahl"
+        #   address: 289
+        #   input_type: holding
+        #   data_type: uint16
+        #   unit_of_measurement: ""
+        #   slave: 1
+        #   scan_interval: 120
+        # - name: "Dimplex HK2/3 Heizkurvenendpunkt"
+        #   unique_id: "dimplex_hk23_kurvenende"
+        #   address: 291
+        #   data_type: uint16
+        #   unit_of_measurement: "°C"
+        #   input_type: holding
+        #   slave: 1
+        #   scan_interval: 120
+        # - name: "Dimplex HK2/3 Festwerttemperatur"
+        #   unique_id: "dimplex_hk23_festwert"
+        #   address: 292
+        #   data_type: uint16
+        #   unit_of_measurement: "°C"
+        #   input_type: holding
+        #   slave: 1
+        #   scan_interval: 120
+        # - name: "Dimplex HK2/3 Parallelverschiebung"
+        #   unique_id: "dimplex_hk23_parallel"
+        #   address: 293
+        #   data_type: uint16
+        #   input_type: holding
+        #   slave: 1
+        #   scan_interval: 120
+        # - name: "Dimplex HK2/3 Mischerlaufzeit"
+        #   unique_id: "dimplex_hk23_mischerlaufzeit"
+        #   address: 294
+        #   data_type: uint16
+        #   unit_of_measurement: "min"
+        #   input_type: holding
+        #   slave: 1
+        #   scan_interval: 120
+        # - name: "Dimplex HK2/3 Mischerhysterese"
+        #   unique_id: "dimplex_hk23_hysterese"
+        #   address: 93
+        #   data_type: uint16
+        #   unit_of_measurement: "K"
+        #   input_type: holding
+        #   slave: 1
+        #   scan_interval: 120
+        # - name: "Dimplex HK2/3 Maximale Temperatur"
+        #   unique_id: "dimplex_hk23_max"
+        #   address: 295
+        #   data_type: uint16
+        #   unit_of_measurement: "°C"
+        #   input_type: holding
+        #   slave: 1
+        #   scan_interval: 120
+        # - name: "Dimplex HK2/3 Kühlung Raumsolltemperatur"
+        #   unique_id: "dimplex_hk23_kuehl"
+        #   address: 296
+        #   data_type: uint16
+        #   unit_of_measurement: "°C"
+        #   input_type: holding
+        #   slave: 1
+        #   scan_interval: 120
+        # ===== Warmwasser Einstellungen =====
+        - name: "Dimplex WW Hysterese"
+          unique_id: "dimplex_ww_hysterese"
+          address: 252
+          input_type: holding
+          data_type: uint16
+          unit_of_measurement: "K"
+          slave: 1
+          scan_interval: 120
+        - name: "Dimplex WW Solltemperatur"
+          unique_id: "dimplex_ww_soll"
+          address: 254
+          data_type: uint16
+          unit_of_measurement: "°C"
+          input_type: holding
+          slave: 1
+          scan_interval: 120
+        - name: "Dimplex WW Minimaltemperatur"
+          unique_id: "dimplex_ww_min"
+          address: 352
+          data_type: uint16
+          unit_of_measurement: "°C"
+          input_type: holding
+          slave: 1
+          scan_interval: 120
+        - name: "Dimplex WW Maximaltemperatur"
+          unique_id: "dimplex_ww_max"
+          address: 255
+          data_type: uint16
+          unit_of_measurement: "°C"
+          input_type: holding
+          slave: 1
+          scan_interval: 120
+        # ===== Schwimmbad Einstellungen =====
+        # - name: "Dimplex Pool Hysterese"
+        #   unique_id: "dimplex_pool_hysterese"
+        #   address: 256
+        #   input_type: holding
+        #   data_type: uint16
+        #   unit_of_measurement: "K"
+        #   slave: 1
+        #   scan_interval: 120
+        # - name: "Dimplex Pool Solltemperatur"
+        #   unique_id: "dimplex_pool_soll"
+        #   address: 258
+        #   data_type: uint16
+        #   unit_of_measurement: "°C"
+        #   input_type: holding
+        #   slave: 1
+        #   scan_interval: 120
+        # ===== 2. Wärmeerzeuger Einstellungen =====
+        - name: "Dimplex 2.WE Mischerhysterese"
+          unique_id: "dimplex_2we_hysterese"
+          address: 48
+          input_type: holding
+          data_type: uint16
+          unit_of_measurement: "K"
+          slave: 1
+          scan_interval: 120
+        - name: "Dimplex 2.WE Parallel Bivalenzpunkt"
+          unique_id: "dimplex_2we_bivalenz"
+          address: 227
+          data_type: uint16
+          unit_of_measurement: "°C"
+          input_type: holding
+          slave: 1
+          scan_interval: 120
+        - name: "Dimplex 2.WE Mischerlaufzeit"
+          unique_id: "dimplex_2we_mischer"
+          address: 228
+          data_type: uint16
+          unit_of_measurement: "min"
+          input_type: holding
+          slave: 1
+          scan_interval: 120
+  
+        # ===== Ungeprüfte Register (mit modterm validieren) =====
+        # UNVERIFIED - aus alter Smart Grid M1.3 Doku
+        # - name: "Dimplex SG Ready Modus"
+        #   unique_id: "dimplex_sg_ready"
+        #   address: 374
+        #   input_type: holding
+        #   data_type: uint16
+        #   unit_of_measurement: ""
+        #   slave: 1
+        #   scan_interval: 30
+  
+        # UNVERIFIED - nicht in RTU-Doku bestätigt
+        # - name: "Dimplex Heizleistung"
+        #   unique_id: "dimplex_heizleistung"
+        #   address: 375
+        #   input_type: input
+        #   data_type: uint16
+        #   unit_of_measurement: "kW"
+        #   scale: 0.01
+        #   precision: 2
+        #   slave: 1
+        #   scan_interval: 30
+  
+        # UNVERIFIED - nicht in RTU-Doku bestätigt
+        # - name: "Dimplex el. Leistungsaufnahme"
+        #   unique_id: "dimplex_el_leistung"
+        #   address: 377
+        #   input_type: input
+        #   data_type: uint16
+        #   unit_of_measurement: "kW"
+        #   scale: 0.01
+        #   precision: 2
+        #   slave: 1
+        #   scan_interval: 30
+  
+        # UNVERIFIED - nicht in RTU-Doku bestätigt
+        # - name: "Dimplex PV Überschuss"
+        #   unique_id: "dimplex_pv_ueberschuss"
+        #   address: 389
+        #   input_type: holding
+        #   data_type: uint16
+        #   unit_of_measurement: "kW"
+        #   scale: 0.01
+        #   precision: 2
+        #   slave: 1
+        #   scan_interval: 30
+  
+        # UNVERIFIED - nicht in RTU-Doku bestätigt
+        # - name: "Dimplex Innenraumfeuchte"
+        #   unique_id: "dimplex_innenfeuchte"
+        #   address: 107
+        #   input_type: holding
+        #   data_type: int16
+        #   unit_of_measurement: "%"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: humidity
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 360
+  
+        # UNVERIFIED - Adresse nicht in aktueller RTU-Doku
+        # - name: "Dimplex Heißgastemperatur"
+        #   unique_id: "dimplex_heissgas"
+        #   address: 8
+        #   input_type: holding
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 10
+  
+        # UNVERIFIED - Adresse nicht in aktueller RTU-Doku
+        # - name: "Dimplex Sauggastemperatur"
+        #   unique_id: "dimplex_sauggas"
+        #   address: 108
+        #   input_type: holding
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 10
+  
+        # UNVERIFIED - Adresse nicht in aktueller RTU-Doku
+        # - name: "Dimplex Verdampfer Austritt"
+        #   unique_id: "dimplex_verdampfer_aus"
+        #   address: 98
+        #   input_type: holding
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 10
+  
+        # UNVERIFIED - Adresse nicht in aktueller RTU-Doku
+        # - name: "Dimplex Verdampfer Mitte"
+        #   unique_id: "dimplex_verdampfer_mid"
+        #   address: 109
+        #   input_type: holding
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 10
+  
+        # UNVERIFIED - Adresse 9 kollidiert mit HC2 Rücklauftemperatur
+        # - name: "Dimplex Kondensator Eintritt"
+        #   unique_id: "dimplex_kond_ein"
+        #   address: 9
+        #   input_type: holding
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 10
+  
+        # UNVERIFIED - Adresse 10 kollidiert mit HC3 Rücklauftemperatur + Kollektor
+        # - name: "Dimplex Kondensator Austritt"
+        #   unique_id: "dimplex_kond_aus"
+        #   address: 10
+        #   input_type: holding
+        #   data_type: int16
+        #   unit_of_measurement: "°C"
+        #   scale: 0.1
+        #   precision: 1
+        #   device_class: temperature
+        #   state_class: measurement
+        #   slave: 1
+        #   scan_interval: 10
+  
+        # UNVERIFIED - Adresse 114 nicht in RTU-Doku bestätigt
+        # - name: "Dimplex Inverterfrequenz"
+        #   unique_id: "dimplex_inverterfreq"
+        #   address: 114
+        #   input_type: input
+        #   data_type: uint16
+        #   unit_of_measurement: "Hz"
+        #   scale: 0.1
+        #   precision: 1
+        #   slave: 1
+        #   scan_interval: 60
+  
+      binary_sensors:
+        # ===== Digitale Eingänge =====
+        - name: "Dimplex Smart Grid Eingang 1"
+          unique_id: "dimplex_sg_eingang1"
+          address: 3
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Smart Grid Eingang 2"
+          unique_id: "dimplex_sg_eingang2"
+          address: 4
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex EVU Sperre"
+          unique_id: "dimplex_evu_sperre"
+          address: 5
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Sperre Extern"
+          unique_id: "dimplex_sperre_extern"
+          address: 6
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+        # ===== Digitale Ausgänge =====
+        - name: "Dimplex Ausgang Verdichter 1"
+          unique_id: "dimplex_out_verdichter1"
+          address: 41
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Verdichter 2"
+          unique_id: "dimplex_out_verdichter2"
+          address: 42
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Primärpumpe/Ventilator"
+          unique_id: "dimplex_out_primaer"
+          address: 43
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang 2. Wärmeerzeuger"
+          unique_id: "dimplex_out_2we"
+          address: 44
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Heizungspumpe M13"
+          unique_id: "dimplex_out_m13"
+          address: 45
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang WW-Ladepumpe M18"
+          unique_id: "dimplex_out_m18"
+          address: 46
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Mischer M21 Auf"
+          unique_id: "dimplex_out_m21_auf"
+          address: 47
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Mischer M21 Zu"
+          unique_id: "dimplex_out_m21_zu"
+          address: 48
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Zusatzumwälzpumpe M16"
+          unique_id: "dimplex_out_m16"
+          address: 49
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Flanschheizung E9"
+          unique_id: "dimplex_out_e9"
+          address: 50
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Heizungspumpe M15"
+          unique_id: "dimplex_out_m15"
+          address: 51
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Mischer M22 Auf"
+          unique_id: "dimplex_out_m22_auf"
+          address: 52
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Mischer M22 Zu"
+          unique_id: "dimplex_out_m22_zu"
+          address: 53
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        # - name: "Dimplex Ausgang Schwimmbadpumpe M19"
+        #   unique_id: "dimplex_out_m19"
+        #   address: 56
+        #   input_type: coil
+        #   slave: 1
+        #   scan_interval: 5
+  
+        - name: "Dimplex Ausgang Sammelstörung"
+          unique_id: "dimplex_out_stoerung"
+          address: 57
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Heizungspumpe M14"
+          unique_id: "dimplex_out_m14"
+          address: 59
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Kühlpumpe"
+          unique_id: "dimplex_out_kuehlpumpe"
+          address: 60
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Heizungspumpe M20"
+          unique_id: "dimplex_out_m20"
+          address: 61
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Heizen/Kühlen Umschaltung"
+          unique_id: "dimplex_out_hk_um"
+          address: 66
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        - name: "Dimplex Ausgang Primär-Kühlpumpe"
+          unique_id: "dimplex_out_kuehl_primaer"
+          address: 68
+          input_type: coil
+          slave: 1
+          scan_interval: 5
+  
+        # - name: "Dimplex Ausgang Solarpumpe"
+        #   unique_id: "dimplex_out_solar"
+        #   address: 71
+        #   input_type: coil
+        #   slave: 1
+        #   scan_interval: 5
+  
+  template:
+    - sensor:
+        # ---------- Statusmeldungen (Register 103) ----------
+        - name: "Dimplex Status Text"
+          unique_id: "dimplex_status_text"
+          icon: mdi:information
+          state: >
+            {% set code = states('sensor.dimplex_statusmeldungen') | int(-1) %}
+            {% set status_map = {
+              0:  'Aus',
+              1:  'Wärmepumpe aktiv – Heizbetrieb',
+              2:  'Heizbetrieb',
+              3:  'Wärmepumpe aktiv – Schwimmbad',
+              4:  'Warmwasserbereitung',
+              5:  'Kühlbetrieb (WP + 2. Wärmeerzeuger)',
+              6:  'Schwimmbad + 2. Wärmeerzeuger',
+              7:  'Warmwasser + 2. Wärmeerzeuger',
+              8:  'Primärpumpenvorlauf',
+              9:  'Heizungsentleerung',
+              10: 'Abtauung (gesperrt – siehe Sperren)',
+              11: 'Durchflussüberwachung / untere Einsatzgrenze',
+              12: 'Niederdruckgrenze',
+              13: 'Niederdruckabschaltung',
+              14: 'Hochdrucksicherheit',
+              15: 'Einschaltverzögerung',
+              16: 'Mindeststillstandszeit',
+              17: 'Netzlastbegrenzung',
+              18: 'Durchflussüberwachung',
+              19: '2. Wärmeerzeuger aktiv',
+              20: 'Niederdruck (Sole/Quelle)',
+              21: 'Wärmepumpe aktiv – Abtauung',
+              22: 'Obere Einsatzgrenze',
+              23: 'Externe Sperre',
+              24: 'Kühlbetrieb Umschaltverzögerung / Kühlbetrieb',
+              25: 'Frostschutz (Kühlbetrieb)',
+              26: 'Vorlauftemperaturbegrenzung',
+              27: 'Taupunktüberwachung',
+              28: 'Taupunkt',
+              29: 'Passiv Kühlen',
+              30: 'Sperre (siehe Sperrregister)'
+            } %}
+            {{ status_map.get(code, 'Unbekannter Status (Code %s)' | format(code)) }}
+  
+        # ---------- Sperrmeldungen (Register 104) ----------
+        - name: "Dimplex Sperre Text"
+          unique_id: "dimplex_sperre_text"
+          icon: mdi:lock-alert
+          state: >
+            {% set code = states('sensor.dimplex_sperrmeldungen') | int(0) %}
+            {% set lock_map = {
+              0:  'Keine Sperre',
+              1:  'Hochtemperatur-Einsatzgrenze / Außentemperatur',
+              2:  'Volumenstrom / WP-Einsatzgrenze / bivalent-alternativ',
+              3:  'Regenerativ / bivalent-regenerativ',
+              4:  'Rücklauftemperaturbegrenzung',
+              5:  'Funktionsprüfung / WW-Nachheizung / Warmwasser',
+              6:  'Hochtemperatur-Einsatzgrenze / Systemprüfung',
+              7:  'Systemprüfung / EVU-Sperre',
+              8:  'Verzögerung Kühlbetriebsumschaltung',
+              9:  'Pumpenvorlauf / Hochdruck',
+              10: 'Mindeststillstandszeit / Niederdruck',
+              11: 'Netzlastbegrenzung / Durchfluss',
+              12: 'Einschaltverzögerung / Sanftanlauf',
+              13: 'WW-Nachheizung',
+              14: 'Regenerativ',
+              15: 'EVU-Sperre',
+              16: 'Sanftanlauf',
+              17: 'Durchfluss',
+              18: 'WP-Einsatzgrenze',
+              19: 'Hochdruck',
+              20: 'Niederdruck',
+              21: 'Wärmequellen-Einsatzgrenze',
+              23: 'Systemgrenze',
+              24: 'Primärkreislauf-Auslastung',
+              25: 'Externe Sperre',
+              31: 'Aufwärmphase',
+              33: 'EvD-Initialisierung',
+              34: '2. Wärmeerzeuger freigegeben',
+              35: 'Störung (siehe Störungsregister)',
+              36: 'Pumpenvorlauf',
+              37: 'Mindeststillstandszeit',
+              38: 'Netzlastbegrenzung',
+              39: 'Einschaltverzögerung',
+              40: 'Wärmequellen-Einsatzgrenze',
+              41: 'Externe Sperre',
+              42: '2. Wärmeerzeuger',
+              43: 'Störung (siehe Störungsregister)'
+            } %}
+            {{ lock_map.get(code, 'Unbekannte Sperre (Code %s)' | format(code)) }}
+  
+        # ---------- Störmeldungen (Register 105) ----------
+        - name: "Dimplex Störung Text"
+          unique_id: "dimplex_stoerung_text"
+          icon: mdi:alert-circle
+          state: >
+            {% set code = states('sensor.dimplex_stoermeldungen') | int(0) %}
+            {% set fault_map = {
+              0:  'Keine Störung',
+              1:  'Störung N17.1',
+              2:  'Störung N17.2',
+              3:  'Störung N17.3 / Verdichterbelastung',
+              4:  'Störung N17.4 / Codierung',
+              5:  'Niederdruck',
+              6:  'Elektronisches Expansionsventil / Frostschutz',
+              7:  'Außenfühler Kurzschluss oder Unterbrechung',
+              8:  'Rücklauffühler Kurzschluss oder Unterbrechung',
+              9:  'WW-Fühler Kurzschluss oder Unterbrechung',
+              10: 'WPIO / Frostschutzfühler Kurzschluss oder Unterbrechung',
+              11: '2. Heizkreisfühler Kurzschluss oder Unterbrechung',
+              12: 'Inverter / Frostschutzfühler Kurzschluss oder Unterbrechung',
+              13: 'WQIF / Niederdruck Sole',
+              14: 'Motorschutz Primärpumpe',
+              15: 'Sensorfehler / Durchfluss',
+              16: 'Niederdruck Sole / Warmwasser',
+              17: 'Hochdruck',
+              19: 'Primärkreisfehler / Heißgasthermostat',
+              20: 'Abtaufehler / Kühlbetrieb-Einsatzgrenze',
+              21: 'Niederdruck Sole Fehler',
+              22: 'Warmwasserfehler',
+              23: 'Verdichterbelastungsfehler / Temperaturdifferenz',
+              24: 'Codierungsfehler',
+              25: 'Niederdruckfehler',
+              26: 'Frostschutzfehler',
+              28: 'Hochdruckfehler',
+              29: 'Temperaturdifferenzfehler',
+              30: 'Heißgasthermostatfehler',
+              31: 'Durchflussfehler'
+            } %}
+            {{ fault_map.get(code, 'Unbekannte Störung (Code %s)' | format(code)) }}
+  
+        # ---------- Betriebsmodus als Text ----------
+        - name: "Dimplex Betriebsmodus Text"
+          unique_id: "dimplex_betriebsmodus_text"
+          icon: mdi:home-thermometer
+          state: >
+            {% set code = states('sensor.dimplex_betriebsmodus') | int(-1) %}
+            {% set mode_map = {
+              0: 'Sommer',
+              1: 'Winter',
+              2: 'Urlaub',
+              3: 'Party',
+              4: '2. Wärmeerzeuger',
+              5: 'Kühlen'
+            } %}
+            {{ mode_map.get(code, 'Unbekannt (Code %s)' | format(code)) }}
+  
+        # ---------- SG Ready Modus als Text ----------
+        - name: "Dimplex SG Ready Text"
+          unique_id: "dimplex_sg_ready_text"
+          icon: mdi:solar-power
+          state: >
+            {% set code = states('sensor.dimplex_sg_ready') | int(0) %}
+            {% set sg_map = {
+              0:  'Hardware',
+              10: 'Gelb',
+              11: 'Grün',
+              12: 'Rot',
+              13: 'Tiefgrün'
+            } %}
+            {{ sg_map.get(code, 'Unbekannt (Code %s)' | format(code)) }}
+  
+        - name: "Dimplex SG Ready Eingangszustand"
+          unique_id: "dimplex_sg_ready_eingang"
+          icon: mdi:solar-power
+          state: >
+            {% set sg1 = 1 if is_state('binary_sensor.dimplex_sg_eingang1', 'on') else 0 %}
+            {% set sg2 = 1 if is_state('binary_sensor.dimplex_sg_eingang2', 'on') else 0 %}
+            {% if sg1 == 0 and sg2 == 0 %}
+              Gelb
+            {% elif sg1 == 0 and sg2 == 1 %}
+              Rot
+            {% elif sg1 == 1 and sg2 == 0 %}
+              Grün
+            {% elif sg1 == 1 and sg2 == 1 %}
+              Tiefgrün
+            {% else %}
+              Unbekannt
+            {% endif %}
+  
+      binary_sensor:
+        - name: "Dimplex Sperre Aktiv"
+          unique_id: "dimplex_sperre_aktiv"
+          device_class: problem
+          state: >
+            {{ states('sensor.dimplex_sperrmeldungen') | int(0) != 0 }}
+  
+        - name: "Dimplex Störung Aktiv"
+          unique_id: "dimplex_stoerung_aktiv"
+          device_class: problem
+          state: >
+            {{ states('sensor.dimplex_stoermeldungen') | int(0) != 0 }}
+  
+  input_select:
+    sg_ready_mode:
+      name: SG Ready Modus
+      options:
+        - Hardware
+        - Gelb
+        - Grün
+        - Rot
+        - Tiefgrün
+      icon: mdi:solar-power
