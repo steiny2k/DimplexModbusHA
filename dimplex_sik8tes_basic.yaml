@@ -722,8 +722,7 @@ dimplex_sik8tes_ee11:
           slave: 1
           scan_interval: 120
   
-        # ===== Ungeprüfte Register (mit modterm validieren) =====
-        # UNVERIFIED - aus alter Smart Grid M1.3 Doku
+        # SG Ready
         # - name: "Dimplex SG Ready Modus"
         #   unique_id: "dimplex_sg_ready"
         #   address: 374
@@ -733,7 +732,7 @@ dimplex_sik8tes_ee11:
         #   slave: 1
         #   scan_interval: 30
   
-        # UNVERIFIED - nicht in RTU-Doku bestätigt
+        # Wert der aktuell zur Verfügung gestellten Wärmeleistung
         # - name: "Dimplex Heizleistung"
         #   unique_id: "dimplex_heizleistung"
         #   address: 375
@@ -745,7 +744,7 @@ dimplex_sik8tes_ee11:
         #   slave: 1
         #   scan_interval: 30
   
-        # UNVERIFIED - nicht in RTU-Doku bestätigt
+        # Wert der aktuell aufgenommen elektrische Leistung
         # - name: "Dimplex el. Leistungsaufnahme"
         #   unique_id: "dimplex_el_leistung"
         #   address: 377
@@ -757,7 +756,7 @@ dimplex_sik8tes_ee11:
         #   slave: 1
         #   scan_interval: 30
   
-        # UNVERIFIED - nicht in RTU-Doku bestätigt
+        # PV Überschuss für Smart-Grid von WR/EM (Achtung, dieser Wert ist in der aktuellen Software nur für die Erfassung, es steht noch keine Funktion dahinter)
         # - name: "Dimplex PV Überschuss"
         #   unique_id: "dimplex_pv_ueberschuss"
         #   address: 389
